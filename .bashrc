@@ -11,10 +11,6 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
-esac
-
 [[ -z $(shopt -oq posix) ]] || {
 	if [ -f /usr/share/bash-completion/bash_completion ]; then
 		. /usr/share/bash-completion/bash_completion
@@ -32,6 +28,37 @@ shopt -s histappend
 shopt -s checkwinsize
 
 ###################################################################################################
+# variables
+###################################################################################################
+
+PS1='λ '
+
+### INIT PATH ###
+
+PATH+=:"$HOME/.local/bin/"
+
+for git_pkg in $HOME/.git-bin/*; {
+	PATH+=:"$git_pkg"
+}; unset git_pkg
+
+[[ -f "$HOME/.cargo/env" ]] &&
+	source "$HOME/.cargo/env"
+
+export PATH
+
+### END PATH ###
+
+HISTCONTROL=ignoreboth
+HISTSIZE=100
+HISTFILESIZE=0
+unset HISTFILE
+
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export PYTHONDONTWRITEBYTECODE=1
+export NEXT_TELEMETRY_DISABLED=1
+export EDITOR='nano'
+
+###################################################################################################
 # aliases
 ###################################################################################################
 
@@ -46,29 +73,14 @@ alias la='ls -laA'
 alias rm='rm -i'
 alias mv='mv -v'
 alias cp='cp -v'
+alias mkdir='mkdir -v'
 
 alias mdclear='exiftool -all= -overwrite_original $@'
-alias nano='nano -x'
+alias nano='nano -xc'
 alias bnano='nano -B'
 alias fd='fdfind'
-
-###################################################################################################
-# variables
-###################################################################################################
-
-export PATH+=":$HOME/.local/bin/"
-
-HISTCONTROL=ignoreboth
-HISTSIZE=100
-HISTFILESIZE=0
-unset HISTFILE
-
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-export PYTHONDONTWRITEBYTECODE=1
-export NEXT_TELEMETRY_DISABLED=1
-export EDITOR="nano"
-
-PS1='\$ '
+alias cpufetchx='cpufetch --logo-long'
+alias pkg='sudo apt'
 
 ###################################################################################################
 # functions
@@ -106,9 +118,3 @@ mkscript() {
 		return $?
 	fi
 }
-
-###################################################################################################
-# autoexec
-###################################################################################################
-
-fastfetch
