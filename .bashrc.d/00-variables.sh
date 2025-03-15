@@ -3,11 +3,13 @@
 ############################################################
 
 # Bash
-export PS1='λ '
 export HISTCONTROL=ignoreboth
 export HISTSIZE=2000
 export HISTFILESIZE=2000
 #unset HISTFILE
+
+# PATH
+export PATH+=":$HOME/.local/bin"
 
 # Editor
 export EDITOR='nano'
