@@ -9,7 +9,7 @@ export HISTFILESIZE=2000
 #unset HISTFILE
 
 # PATH
-export PATH+=":$HOME/.local/bin"
+export PATH="$HOME/.local/bin:$PATH"
 
 # Editor
 export EDITOR='nano'

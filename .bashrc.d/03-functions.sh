@@ -12,11 +12,12 @@ if ls --color -d . >/dev/null 2>&1; then
 			"$@"
 	}
 	alias ll='ls -l'
+	alias l='ls -l'
 	alias la='ls -la'
 fi
 
 function cd() {
-	command cd "$@" && ls
+	builtin cd "$@" && ls
 }
 
 function edit-bin() {

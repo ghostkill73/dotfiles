@@ -11,7 +11,7 @@ alias mkdir='mkdir -v'
 # extra
 alias nano='nano -xc'
 alias bnano='nano -B'
-alias find='fdfind'
+alias fd='fdfind'
 alias cpufetchx='cpufetch --logo-long'
 alias pkg='sudo apt'
 alias tree='tree -aC'
