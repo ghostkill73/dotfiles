@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+
+[[ -z "$(type -P exiftool)" ]] && {
+	printf '%s\n' "exiftool not installed."
+	exit 1
+}
+
+msg() { printf '%s\n' "$*" >&2; }
+
+usage()
+{
+	msg "$0 *.{png,...}"
+
+	exit 1
+}
+
+max_threads()
+{
+	while [[ "$(jobs -l -r -p | wc -l)" > 3 ]]; do
+		sleep 1
+	done
+}
+
+main()
+{
+	local files
+	local confirmation
+	local random extension new
+	local i
+
+	declare -a files=($@)
+
+	for i in ${files[@]}
+	{
+		[[ -e "$i" ]] || continue
+
+		msg "$i"
+	}
+	unset i
+
+	read -rep "Continue? (y/N): " confirmation
+	[[ "${confirmation,,}" = "y" ]] ||
+	{
+		msg "exiting..."
+		exit 1
+	}
+
+	for i in ${files[@]}
+	{
+		(
+		[[ -e "$i" ]] || continue
+
+		random="$(head -c 1000 /dev/urandom | sha256sum)"
+		#random="${random%% *}"
+		random="${random:0:40}"
+		extension="${i##*.}"
+		new="${random}.${extension}"
+
+		msg ""
+		msg "Removing metadata from: $i"
+		msg "$i renamed to $new"
+		msg ""
+
+		mv "$i" "$new"
+		chmod -x "$new"
+
+		exiftool \
+			-all= \
+			-overwrite_original \
+			"$new" 1>/dev/null 0>&1
+		) &
+		max_threads
+	}
+	unset i
+}
+
+(( $# == 0 )) && usage
+
+main $@
+
+wait

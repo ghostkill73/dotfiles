@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+SHARE_FILES_PATH="${1:-$PWD}"
+
+clear
+
+echo
+echo "Sharing files in: ${SHARE_FILES_PATH}..."
+echo
+
+( ip a || ifconfig ) | grep inet | awk '{print $1 " -> " $2}'; echo
+
+python3 -m http.server 8000 -d "$SHARE_FILES_PATH"

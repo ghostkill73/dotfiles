@@ -3,7 +3,7 @@
 ############################################################
 
 # coreutils
-alias rm='rm -i'
+alias rm='rm -vi'
 alias mv='mv -v'
 alias cp='cp -v'
 alias mkdir='mkdir -v'
