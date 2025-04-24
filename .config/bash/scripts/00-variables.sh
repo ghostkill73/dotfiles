@@ -3,21 +3,22 @@
 ############################################################
 
 # Bash
+export HISTFILE="$HOME/.config/bash/history"
+export INPUTRC="$HOME/.config/bash/inputrc"
 export HISTCONTROL=ignoreboth
-export HISTSIZE=2000
-export HISTFILESIZE=2000
-#unset HISTFILE
+export HISTSIZE=10000
+export HISTFILESIZE=10000
+
+PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+
+[[ -n "$SSH_CONNECTION" ]] &&
+	PS1="\[\033[1;35m\](ssh)\[\033[0m\] $PS1"
 
 # PATH
 export PATH+=":$HOME/.local/bin"
 
 # Editor
 export EDITOR='nano'
-
-# Programming
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-export PYTHONDONTWRITEBYTECODE=1
-export NEXT_TELEMETRY_DISABLED=1
 
 # Less
 export LESSHISTFILE=-

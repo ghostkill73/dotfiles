@@ -3,17 +3,24 @@
 ############################################################
 
 if ls --color -d . >/dev/null 2>&1; then
-	export COLUMNS
+	declare -ax LS_OPTIONS=(
+		--almost-all
+		-C
+		--color=always
+		-F
+		--group-directories-first
+		--human-readable
+		--sort=extension
+		--time-style=long-iso
+		-X
+	)
 	eval "$(dircolors)"
+
 	function ls() {
-		command ls \
-			-AFCrhv --color=always \
-			--time-style=long-iso \
-			"$@"
+		command ls "${LS_OPTIONS[@]}" "$@"
 	}
 	alias ll='ls -l'
-	alias l='ls -l'
-	alias la='ls -la'
+	alias l='ls -og'
 fi
 
 function cd() {
