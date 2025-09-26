@@ -1,89 +1,129 @@
 # nanorc
+# ########################################
+# Includes
+# ########################################
+
 include "/usr/share/nano/*.nanorc"
 include "/usr/share/nano/extra/*.nanorc"
 
+# ########################################
 # Options
-set tabsize 4
-#set tabstospaces
-set linenumbers
-set numbercolor yellow,normal
-set scrollercolor grey,normal
-set indicator
-set smarthome
+# ########################################
+
 set afterends
+set atblanks
+set autoindent
+set emptyline
+set historylog
+set indicator
+set linenumbers
+set locking
+#set magic
+set mouse
+set numbercolor yellow,normal
+set positionlog
+#set regexp
+set scrollercolor grey,normal
+set showcursor
+set smarthome
+set softwrap
+#set speller "cmd ..."
+set stateflags
+set tabsize 2
+set trimblanks
+set unix
 set wordchars "_"
 set zap
-set atblanks
-set historylog
-set multibuffer
-set mouse
-#set locking
-#set nohelp
+#set zero
 
-#####  Keybindings Cheatsheet  #####
-## ^-Q     quit
-## ^-Z     undo
-## M-R     redo
-## ^-C     copy
-## ^-V     paste
-## ^-X     cut
-## ^-K     delete line
-## ^-Bsp   delete until word start (or M-Bsp)
-## ^-Del   delete until next word
-## ^-S     save file
-## ^-/     comment/uncomment
-## M-:     record macro
-## M-;     play macro
-## ^-Space autocomplete word
-## ^-T     terminal (eg. "|xxd")
+# ########################################
+# Keybinds
+# ########################################
 
-## M-C   show cursor position
-## ^-L   refresh and center at cursor
-## ^-W   search forwards (= M-W with prompt)
-## ^-E   search backwards (= M-E with prompt)
-## ^-R   replace
-## ^_    goto line number
-## ^-Up  goto previous block
-## ^-Dwn goto next block
-## M-]   goto matching bracket
-## ^-G   goto head of file (vim-like)
-## M-G   goto end of file
-## M-Up  scroll screen up
-## M-Dwn scroll screen down
-## M-Left  switch to previous file
-## M-Rght  switch to next file
-## M-Ins   insert anchor
-## M-PgDwn goto next anchor
+# 1
+bind ^Q exit all
+bind ^W writeout main
+bind ^E execute main
+bind ^R replace main
+bind ^T gotoline main
+unbind ^Y main
+bind ^U redo main
+bind ^I insert main
+unbind ^O main
+bind ^P location main
 
-unbind ^/				  main
-unbind ^J				  main
-unbind M-J				  main
-unbind M-U				  main
-unbind M-/				  main
-unbind M-R				  main
+# 2
+unbind ^A main
+bind ^S "{execute}| sed 's/\s\+$//' {enter}{savefile}" main
+bind ^F wherewas main
+bind ^G whereis main
+bind ^H help all
+bind ^H exit help
+bind ^J justify main
+bind ^K zap main
+bind ^L center main
 
-bind ^Q     exit          all
-bind ^Z     undo          main
-bind ^C     copy          main
-bind ^V     paste         main
-bind ^X     cut           main
-bind ^K     zap           main
-bind ^H     chopwordleft  all
-bind ^/     comment       main
-bind ^Space complete      main
+# 3
+bind ^Z undo main
+bind ^X cut main
+bind ^C cancel all
+bind ^C copy main
+bind ^V paste main
+unbind ^B main
 
-bind M-C    location      main
-bind ^E     wherewas      all
-bind M-E    findprevious  all
-bind ^R     replace       main
-bind ^_     gotoline      main
-bind ^G     firstline     all
-bind M-G    lastline      all
-bind ^B     pageup        all
-bind ^F     pagedown      all
+# Alt
+bind M-A mark main
+unbind M-B main
+unbind M-E main
+unbind M-F main
+unbind M-G main
+unbind M-B main
+bind M-Q findnext main
+bind M-W findprevious main
+bind M-R refresh all
+unbind M-U main
 
-bind M-1    help          all
-#bind Sh-M-C constantshow  main
-bind Sh-M-F formatter     main
-#bind Sh-M-B linter        main
-bind Sh-M-i linter        main
+unbind M-0 main
+unbind M-1 main
+unbind M-2 main
+unbind M-3 main
+unbind M-4 main
+unbind M-5 main
+unbind M-6 main
+unbind M-7 main
+unbind M-8 main
+unbind M-9 main
+
+unbind M-Space main
+unbind M-^ main
+unbind M-. main
+unbind M-, main
+unbind M-( main
+unbind M-) main
+unbind M-} main
+unbind M-{ main
+
+# Shift
+bind Sh-M-F formatter main
+bind Sh-M-I linter main
+
+# Fn
+unbind F1 main
+unbind F2 main
+unbind F3 main
+unbind F4 main
+unbind F5 main
+unbind F6 main
+unbind F7 main
+unbind F8 main
+unbind F9 main
+unbind F10 main
+unbind F11 main
+unbind F12 main
+
+# extra
+bind ^Space complete main
+bind ^/ comment main
+unbind ^\ main
+unbind ^] main
+unbind Ins main
