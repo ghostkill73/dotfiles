@@ -2,20 +2,24 @@
 # Variables
 ############################################################
 
+PS1='\w > '
+
+# XDG
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+
 # Bash
-export HISTFILE="$HOME/.config/bash/history"
-export INPUTRC="$HOME/.config/bash/inputrc"
+export _BASH_CONFIG="$XDG_CONFIG_HOME/bash"
+export _BASH_SCRIPTS="$_BASH_CONFIG/scripts"
+export HISTFILE="$_BASH_CONFIG/history"
+export INPUTRC="$_BASH_CONFIG/inputrc"
 export HISTCONTROL=ignoreboth
 export HISTSIZE=10000
 export HISTFILESIZE=10000
 
-PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-
-[[ -n "$SSH_CONNECTION" ]] &&
-	PS1="\[\033[1;35m\](ssh)\[\033[0m\] $PS1"
-
-# PATH
-export PATH+=":$HOME/.local/bin"
+export PATH="$HOME/.local/bin:/usr/local/bin:/usr/bin"
 
 # Editor
 export EDITOR='nano'

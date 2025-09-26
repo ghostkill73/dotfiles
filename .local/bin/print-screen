@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+DATE=$(date +'%d-%m-%y_%H-%M-%S-%s')
+scrot -s -o "$HOME/screenshots/$DATE.png"
