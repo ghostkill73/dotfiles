@@ -11,15 +11,16 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 
 # Bash
-export _BASH_CONFIG="$XDG_CONFIG_HOME/bash"
-export _BASH_SCRIPTS="$_BASH_CONFIG/scripts"
-export HISTFILE="$_BASH_CONFIG/history"
-export INPUTRC="$_BASH_CONFIG/inputrc"
-export HISTCONTROL=ignoreboth
+export _BASH_HOME="$XDG_CONFIG_HOME/bash"
+export HISTFILE="$_BASH_HOME/history"
+export INPUTRC="$_BASH_HOME/inputrc"
+export HISTCONTROL=ignoreboth:erasedups
+export HISTIGNORE="ls:cd:[bf]g:exit:pwd:clear:nano:history:cat"
+export HISTTIMEFORMAT="[%F %T] "
 export HISTSIZE=10000
 export HISTFILESIZE=10000
 
-export PATH="$HOME/.local/bin:/usr/local/bin:/usr/bin"
+export PATH="/usr/local/bin:/usr/bin:/bin:$HOME/.local/bin"
 
 # Editor
 export EDITOR='nano'
@@ -34,4 +35,4 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_se=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[1;32m'
 export LESS_TERMCAP_ue=$'\E[0m'
-eval "$(lesspipe)"
+eval "$(lesspipe)" 2>&-

@@ -24,7 +24,7 @@ if ls --color -d . >/dev/null 2>&1; then
 fi
 
 function cd() {
-	builtin cd "$@" && ls
+	builtin cd "$@" && l
 }
 
 function edit-bin() {

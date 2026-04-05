@@ -17,4 +17,4 @@ shopt_list=(
 for opt in "${shopt_list[@]}"; do
 	shopt -s "$opt"
 done
-unset shopt_list
+unset opt shopt_list

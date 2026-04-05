@@ -14,4 +14,4 @@ alias bnano='nano -B'
 alias fd='fdfind'
 alias tree='tree -aC'
 alias man='MANWIDTH=$(( COLUMNS - 1 )) man'
-alias x='clear; startx &>/dev/null
+alias x='clear; startx &>/dev/null'

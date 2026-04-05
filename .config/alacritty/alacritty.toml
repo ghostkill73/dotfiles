@@ -1,3 +1,4 @@
+
 [[keyboard.bindings]]
 action = "Paste"
 key = "Paste"
@@ -168,7 +169,7 @@ mods = "Shift"
 
 [general]
 live_config_reload = true
-import = ["/home/ghost/.config/alacritty/theme/xterm.toml"]
+import = ["~/.config/alacritty/theme/xterm.toml"]
 
 [terminal]
 
